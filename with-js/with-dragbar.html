@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example 2</title>
+
+    <link rel="stylesheet" href="with-dragbar.css" />
+  </head>
+  <body>
+    <div class="split-pane">
+      <div class="sp-item sp-item-left" style="background-color: blue">left</div>
+      <div class="dragbar" onmousedown="handleMouseDown()"></div>
+      <div class="sp-item sp-item-right" style="background-color: red">right</div>
+    </div>
+
+    <script>
+      const splitItemLeft = document.querySelector(".sp-item-left");
+      const splitItemRight = document.querySelector(".sp-item-right");
+
+      function handleMouseDown() {
+        // clear handlers on release
+        window.onmouseup = function () {
+          window.onmousemove = null;
+          window.onmouseup = null;
+        };
+
+        window.onmousemove = function (e) {
+          // boundaries
+          if (e.clientX < 0 || e.clientX > window.innerWith) {
+            return;
+          }
+          splitItemLeft.style.width = e.clientX + "px";
+          splitItemRight.style.width = window.innerWidth - e.clientX + "px";
+        };
+      }
+    </script>
+  </body>
+</html>

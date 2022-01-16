@@ -1,0 +1,48 @@
+html,
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  height: 100vh;
+}
+*::after,
+*::before,
+* {
+  box-sizing: inherit;
+}
+
+#root,
+.App {
+  height: 100%;
+}
+
+/* only for demo, you don't actually need it */
+.sp-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* SPLIT_PANE2_BEGIN */
+.split-pane {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.sp-item {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.dragbar {
+  min-width: 12px;
+  height: 100%;
+  background-color: black;
+  cursor: col-resize;
+}
+/* SPLIT_PANE2_END */

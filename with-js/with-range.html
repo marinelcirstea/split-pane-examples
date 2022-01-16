@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example 1</title>
+
+    <link rel="stylesheet" href="with-range.css" />
+  </head>
+  <body>
+    <div class="sp-container">
+      <div class="sp-sizing-details">
+        <input
+          type="range"
+          min="0"
+          max="0"
+          value="0"
+          class="sp-range"
+          on
+          onmouseup="handleMouseUp()"
+          onmousedown="handleMouseDown()"
+          onchange="updateWidths(this.value)"
+        />
+      </div>
+      <div class="split-pane">
+        <div class="sp-item sp-item-left" style="background-color: blue">left</div>
+        <div class="sp-item sp-item-right" style="background-color: red">right</div>
+      </div>
+    </div>
+
+    <script>
+      const sprange = document.querySelector("input.sp-range");
+      const splitItemLeft = document.querySelector(".sp-item-left");
+      const splitItemRight = document.querySelector(".sp-item-right");
+
+      sprange.max = `${window.innerWidth}`;
+      sprange.value = `${window.innerWidth / 2}`;
+
+      function handleMouseDown() {
+        window.onmousemove = function (e) {
+          sprange.value = e.clientX;
+          updateWidths(e.clientX);
+        };
+      }
+
+      function handleMouseUp() {
+        window.onmousemove = null;
+      }
+
+      function updateWidths(val) {
+        splitItemLeft.style.width = val + "px";
+        splitItemRight.style.width = window.innerWidth - val + "px";
+      }
+    </script>
+  </body>
+</html>
